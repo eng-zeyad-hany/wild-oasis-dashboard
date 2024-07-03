@@ -1,21 +1,21 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { updateSetting as updateSettingApi } from "../../services/apiSettings.js";
-export default function useEditSetting(newSetting) {
+export default function useUpdateSetting(newSetting) {
   const queryClient = useQueryClient();
-  const { mutate: updateSetting, isPending: isEditing } = useMutation({
+  const { mutate: updateSetting, isPending: isUpdating } = useMutation({
     // only pass one element to that function so use {} to destructure the data and pass it to fn
-    mutationFn: (newSetting) => updateSettingApi(newSetting),
+    mutationFn: updateSettingApi,
     onSuccess: () => {
-      toast.success("Cabin successfully edited");
+      toast.success("setting successfully edited");
 
       queryClient.invalidateQueries({
-        queryKey: ["cabins"],
+        queryKey: ["settings"],
       });
     },
     onError: (error) => {
       toast.error(error.message);
     },
   });
-  return { updateSetting, isEditing };
+  return { updateSetting, isUpdating };
 }

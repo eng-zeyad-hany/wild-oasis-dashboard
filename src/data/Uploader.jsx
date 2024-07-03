@@ -15,6 +15,7 @@ import { guests } from "./data-guests";
 //   breakfastPrice: 15,
 // };
 
+// Delete all Table data
 async function deleteGuests() {
   const { error } = await supabase.from("guests").delete().gt("id", 0);
   if (error) console.log(error.message);
@@ -29,7 +30,7 @@ async function deleteBookings() {
   const { error } = await supabase.from("bookings").delete().gt("id", 0);
   if (error) console.log(error.message);
 }
-
+// create it again
 async function createGuests() {
   const { error } = await supabase.from("guests").insert(guests);
   if (error) console.log(error.message);

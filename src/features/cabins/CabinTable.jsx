@@ -22,11 +22,11 @@ const TableHeader = styled.header`
   padding: 1.6rem 2.4rem;
 `;
 function CabinTable() {
-  const { isLoading, cabins } = useCabins();
+  const { isPending, cabins } = useCabins();
   const [searchParams] = useSearchParams();
   if (!cabins) return <Empty resource={"cabins"} />;
 
-  if (isLoading) return <Spinner />;
+  if (isPending) return <Spinner />;
   // ! 1.FILTER
   const filterValue = searchParams.get("discount") || "all";
   let filteredCabins;

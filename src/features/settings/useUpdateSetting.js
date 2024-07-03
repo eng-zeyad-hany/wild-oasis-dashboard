@@ -9,7 +9,7 @@ export default function useUpdateSetting(newSetting) {
     onSuccess: () => {
       toast.success("setting successfully edited");
 
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: ["settings"],
       });
     },
